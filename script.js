@@ -24,7 +24,6 @@ songList.appendChild(createSongList());
 songList.onclick = function (e) {
   const source = document.getElementById("source");
   source.src = "songs/" + e.target.innerText;
-  console.log(e);
   document.querySelector("#currentSong").innerText = `Now Playing: ${e.target.innerText}`;
 
   player.load();
@@ -45,4 +44,11 @@ const slider = document.getElementById("volumeSlider");
 slider.oninput = function (e) {
   const volume = e.target.value;
   player.volume = volume;
+}
+
+function updateProgress() {
+  if(player.currentTime > 0) {
+    const progressBar = document.getElementById("progress");
+    progressBar.value = (player.currentTime / player.duration) * 100;
+  }
 }

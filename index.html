@@ -10,10 +10,12 @@
 	<body>
 		<div class="player">
 			<img src="headphones.svg" alt="headphones image" />
-			<audio id="player">
+			<audio id="player" ontimeupdate="updateProgress()">
 				<source id="source"/>
 				Audio not supported
 			</audio>
+
+			<progress id="progress" value="0" max="100"></progress>
 
       <div id="controls">
         <p id="currentSong"></p>
