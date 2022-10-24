@@ -1,10 +1,12 @@
 const songs = [
-  "Black Coffee & David Guetta - Drive feat. Delilah Montagu",
-  "Chris Lorenzo - California Dreamin (feat. High Jinx)",
-  "Spherical Aberration (Jiggler Remix)",
-  "Tinlicker & Helsloot - Tell Me (feat. Hero Baldwin)",
-  "ZHU, Nero - Dreams"
+  "Black Coffee & David Guetta - Drive feat. Delilah Montagu.mp3",
+  "Chris Lorenzo - California Dreamin (feat. High Jinx).mp3",
+  "Spherical Aberration (Jiggler Remix).mp3",
+  "Tinlicker & Helsloot - Tell Me (feat. Hero Baldwin).mp3",
+  "ZHU, Nero - Dreams.mp3"
 ];
+
+const player = document.getElementById("player");
 
 function createSongList() {
   const list = document.createElement("ol");
@@ -22,10 +24,19 @@ songList.appendChild(createSongList());
 songList.onclick = function (e) {
   const source = document.getElementById("source");
   source.src = "songs/" + e.target.innerText;
-
+  console.log(e);
   document.querySelector("#currentSong").innerText = `Now Playing: ${e.target.innerText}`;
 
-  const player = document.getElementById("player");
   player.load();
   player.play();
 };
+
+function playAudio() {
+  if(player.readyState) {
+    player.play();
+  }
+}
+
+function pauseAudio() {
+  player.pause();
+}
