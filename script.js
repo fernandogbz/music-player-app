@@ -4,7 +4,7 @@ const songs = [
   "Spherical Aberration (Jiggler Remix).mp3",
   "Tinlicker & Helsloot - Tell Me (feat. Hero Baldwin).mp3",
   "ZHU, Nero - Dreams.mp3"
-];
+]
 
 const player = document.getElementById("player");
 
@@ -16,19 +16,27 @@ function createSongList() {
     list.appendChild(item);
   }
   return list;
-};
+}
 
 const songList = document.getElementById("songList");
 songList.appendChild(createSongList());
 
-songList.onclick = function (e) {
+const links = document.querySelectorAll("li");
+for(const link of links) {
+  link.addEventListener("click", setSong);
+}
+
+function setSong(e) {
+  document.querySelector("#headphones").classList.remove("pulse");
+
   const source = document.getElementById("source");
   source.src = "songs/" + e.target.innerText;
   document.querySelector("#currentSong").innerText = `Now Playing: ${e.target.innerText}`;
 
   player.load();
   player.play();
-};
+  document.querySelector("#headphones").classList.add("pulse");
+}
 
 function playAudio() {
   if(player.readyState) {
